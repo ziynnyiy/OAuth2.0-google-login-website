@@ -1,0 +1,45 @@
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Google與本地登入系統</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/">首頁</a></li>
+        <!-- if() => 確認是否有user屬性，若「沒有」user屬性則會顯示 -->
+        <!-- 因為，deserializeUser() 會將req.user這個屬性設定為foundUser -->
+        <!-- 而我們在先前的route內增加了一個變數 { user: req.user } -->
+        <!-- => 這表示，有成功通過登入驗證的使用者會有user屬性，反之則沒有 -->
+        <% if (!user) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/login">會員登入</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/signup">註冊會員</a>
+        </li>
+        <!-- if() => 確認是否有user屬性，若「有」user屬性則會顯示 -->
+        <!-- 詳細說明同上 -->
+        <% } %> <% if (user) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/logout">登出系統</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">個人檔案</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile/post">製作新的Post</a>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
